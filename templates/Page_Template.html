@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!-- saved from url=(0064)/Page_Template/ -->
+<html lang="en">
+  <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Rotem Simhi">
+    <link rel="icon" type="image/png" href="/static/psicon.png">
+
+    <title>Sticky Footer Navbar Template for Bootstrap</title>
+
+    <!-- Custom styles for Code Snipets -->
+    <link rel="stylesheet" href="/static/css/style.css">
+    
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/css/sticky-footer-navbar.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <header>
+      <!-- Fixed navbar -->
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #285c7e;">
+        <a class="navbar-brand" href="/Page_Template.html">Fixed navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/index.html">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/PSWorkPlan.html">Work Plan</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Scripts</a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/PSScripts.html">PowerShell Scripts</a>
+                <a class="dropdown-item" href="/SplunkScritps.html">Splunk Scripts</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/CheatSheet.html">Logging Cheat Sheets</a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="/Page_Template.html">Page Template</a>
+            </li>
+          </ul>
+          <form class="form-inline mt-2 mt-md-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Begin page content -->
+    <main role="main" class="container" id="#top">
+      <h1 class="mt-5">Sticky footer with fixed navbar</h1>
+      <p class="lead">Pin a fixed-height footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added with <code>padding-top: 60px;</code> on the <code>body &gt; .container</code>.</p>
+      <p>Back to <a href="https://getbootstrap.com/docs/4.0/examples/sticky-footer/">the default sticky footer</a> minus the navbar.</p>
+
+      <h3 class="mt-5">Test if using Powershell Version 5.1</h3>
+      <div class="code" id="#ps5">
+        <span style='color:#0505ff'>function</span>
+        <span style='color:#9238e7'>Test-LatestPSVersion</span>
+        <span style='color:#ffffff'>{</span><br />
+        <span style='color:#ffffff'>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span style='color:#FF4500'>$Version</span>
+        <span style='color:#A9A9A9'>=</span>
+        <span style='color:#b90606'>&#39;{0}.{1}&#39;</span>
+        <span style='color:#A9A9A9'>-f</span>
+        <span style='color:#ffffff'>(</span>
+        <span style='color:#FF4500'>$PSVersionTable</span><span style='color:#ffffff'>.PSVersion.Major</span>
+        <span style='color:#ffffff'>)</span><span style='color:#A9A9A9'>,</span>
+        <span style='color:#ffffff'>(</span>
+        <span style='color:#FF4500'>$PSVersionTable</span><span style='color:#ffffff'>.PSVersion.Minor</span>
+        <span style='color:#ffffff'>)</span><br />
+        <span style='color:#ffffff'>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span style='color:#0505ff'>if</span>
+        <span style='color:#ffffff'>(</span><span style='color:#FF4500'>$Version</span>
+        <span style='color:#A9A9A9'>-eq</span><span style='color:#ffffff'>&nbsp;</span>
+        <span style='color:#b90606'>&#39;5.1&#39;</span><span style='color:#ffffff'>)</span>
+        <span style='color:#ffffff'>{</span><br />
+        <span style='color:#ffffff'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span style='color:#0505ff'>return</span>
+        <span style='color:#FF4500'>$true</span><br />
+        <span style='color:#ffffff'>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span style='color:#ffffff'>}</span>
+        <span style='color:#0505ff'>else</span>
+        <span style='color:#ffffff'>{</span><br />
+        <span style='color:#ffffff'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span style='color:#0505ff'>return</span>
+        <span style='color:#FF4500'>$false</span><br />
+        <span style='color:#ffffff'>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span style='color:#ffffff'>}</span><br />
+        <span style='color:#ffffff'>}</span>
+    </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted">By Rotem Simhi &copy;</span>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/static/js/jquery-3.2.1.slim.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/static/js/jquery-slim.min.js"><\/script>')</script>
+    <script src="/static/js/popper.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+  
+
+</body></html>

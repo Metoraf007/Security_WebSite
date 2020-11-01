@@ -1,0 +1,87 @@
+
+div.code{
+    border-radius: 12px 12px;
+    font-family: Consolas, "Courier New", monospace;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+    letter-spacing: 0px;
+    color:rgb(212, 212, 212);
+    background-color:rgb(30, 30, 30);
+    padding:10px;
+    margin:5px;
+}
+div.headline{
+  background: inherit;
+  text-align: center;
+  text-decoration: underline;
+  font-weight: bold;
+  font-size: 50px;
+}
+
+div.error_middle_page{
+  text-align: center;
+  font-size: large;
+}
+#heb{
+  direction: rtl;
+}
+
+ul {
+  list-style: none;
+}
+/* unvisited link */
+a:link {
+    color: rgb(0,0,0);
+    text-decoration: none;
+}
+  
+  /* visited link */
+a:visited {
+    color: rgb(1, 1, 141);
+}
+  
+  /* mouse over link */
+a:hover {
+    color: hotpink;
+    text-decoration: underline;
+}
+  
+  /* selected link */
+a:active {
+    color: blue;
+}
+.wrapper {
+    min-height: 100%;
+    margin-bottom: -20px;
+}
+h5.head {
+  width: 250px;
+  text-align: left;
+  box-shadow: 4px 4px 4px slategrey;
+}
+#heb{
+  direction: rtl;
+}
+/*PowerShell Command Colors*/
+.ps-comment{
+  color: #57a64a;
+}
+.ps-keyword{
+  color: #569cd6;
+}
+.ps-string{
+  color: #ce9178;
+}
+.ps-pscommand {
+  color: #569cd6
+}
+.ps-parameter{
+  color: #01cfff;
+}
+.ps-number{
+  color: #b5cea8;
+}
+.ps-variable{
+  color: #ff4500;
+}

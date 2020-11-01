@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Rotem Simhi">
+
+    <link rel="icon" type="image/png" href="/static/psicon.png">
+
+    <title>PowerShell Scripts Repository</title>
+
+    <!-- Custom styles for Code Snipets -->
+    <link rel="stylesheet" href="/static/css/style.css">
+    
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/css/sticky-footer-navbar.css" rel="stylesheet">
+  </head>
+      
+  <body>
+
+    <!--START OF HEADER-->
+
+    <header>
+      <!-- Fixed navbar -->
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #285c7e;">
+        <a class="navbar-brand" href="/index.html">Cyber Security</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item ">
+                  <a class="nav-link " href="/index.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown" >
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Work Plans</a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/PSWorkPlan.html">PowerShell Security</a>
+                  </div>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Scripts</a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/PSScripts.html">PowerShell Scripts</a>
+                    <a class="dropdown-item active" href="/SplunkScripts.html">Splunk Scripts</a>
+                  </div>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Misc</a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/CheatSheet.html">Logging Cheat Sheets</a>
+                  </div>
+                </li>
+              </ul>
+              <form class="form-inline mt-2 mt-md-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              </form>
+          </div>
+      </nav>
+    </header>
+
+    <!--END OF HEADER-->
+
+    <main role="main" class="container" id="#top">
+      <h1 class="mt-5">Splunk Scripts Repository</h1>
+      <p class="lead">Copy a script and use it.</p>
+      <p>Back to the<a href="/PSWorkPlan.html"> PowerShell Work Plan</a> page.</p>
+      
+        
+        <div class="bd-clipboard text-right">
+          <h3 class="mt-5 text-left">Splunk Search for Network Traffic Going to .ps1 Domains</h3>
+          <button class="btn btn-outline-info btn-clipboard" title data-original-title="Copy to clipboard">Copy</button>
+        </div>
+        <div class="code" id="#nettraffic">
+            <span>
+                <span style="color: #3dc9b0;">index</span><span style="color: #d4d4d4;">=* </span><span style="color: #3dc9b0;">sourcetype</span><span style="color: #d4d4d4;">=stream:http</span>
+            </span><br/>
+            <span>
+              <span style="color: #d4d4d4;font-weight: bold;">| </span><span style="color: #569cd6;font-weight: bold;">where </span><span style="color: #c586c0;">like</span><span style="color: #d4d4d4;">(uri, </span><span style="color: #ce9178;">"%.ps1"</span><span style="color: #d4d4d4;">)</span>
+            </span>
+            <br/>
+            <span>
+              <span style="color: #d4d4d4;font-weight: bold;">| </span><span style="color: #569cd6;font-weight: bold;">rex </span><span style="color: #3dc9b0;">field</span><span style="color: #d4d4d4;">=uri </span><span style="color: #ce9178;">"\/(?&lt;script_name&gt;[^\/]+(?=$))"</span>
+            </span>
+            <br/>
+            <span>
+              <span style="color: #d4d4d4;font-weight: bold;">| </span><span style="color: #569cd6;font-weight: bold;">eval</span><span style="color: #d4d4d4;"> dest_content=</span><span style="color: #c586c0;">substr</span><span style="color: #d4d4d4;">(dest_content,</span><span style="color: #b5cea8;">1</span><span style="color: #d4d4d4;">,</span><span style="color: #b5cea8;">100</span><span style="color: #d4d4d4;">)</span>
+              </span><br/><span>
+              <span style="color: #d4d4d4;font-weight: bold;">| </span><span style="color: #569cd6;font-weight: bold;">stats </span><span style="color: #c586c0;">VALUES</span><span style="color: #d4d4d4;">(dest_content) </span><span style="color: #c586c0;">VALUES</span><span style="color: #d4d4d4;">(uri) </span><span style="color: #dd6a6f;">by</span><span style="color: #d4d4d4;"> dest_ip</span>
+            </span>
+            <br/>
+            <span><span> </span></span><br/>
+        </div>
+
+      </br>
+
+        <h3>Sysmon Indication of Automation.Dll/ Reflection.Dll being called</h3>
+        <div class="bd-clipboard text-right">
+            <button class="btn btn-outline-info btn-clipboard" title data-original-title="Copy to clipboard" >Copy</button>
+        </div>
+        <div class="code" id="#sysmon">
+            <span>
+                <span style="color: #3dc9b0;">index</span><span style="color: #d4d4d4;">=</span><span style="color: #ce9178;">"*"</span>
+                <span style="color: #3dc9b0;">sourcetype</span><span style="color: #d4d4d4;">=</span><span style="color: #ce9178;">"XmlWinEventLog:Microsoft-Windows-Sysmon/Operational</span>
+            </span><br/>
+            <span>
+                <span style="color: #d4d4d4;">EventID</span><span style="color: #d4d4d4;">=</span><span style="color: #b5cea8;">7</span>
+            </span><br/>
+            <span>
+                <span style="color: #d4d4d4;">Image!=</span>
+                <span style="color: #ce9178;">"C:\\Program Files\\Microsoft Monitoring Agent\\Agent\\MonitoringHost.exe"</span>
+                <span style="color: #d4d4d4;">                 
+                </span>
+            </span><br/>
+            <span>
+                <span style="color: #d4d4d4;">Image!=</span>
+                <span style="color: #ce9178;">"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"</span>
+            </span><br/>
+            <span>
+                <span style="color: #d4d4d4;font-weight: bold;">| </span><span style="color: #569cd6;font-weight: bold;">stats </span><span style="color: #c586c0;">count </span><span style="color: #dd6a6f;">by</span><span style="color: #d4d4d4;"> host, Image, ImageLoaded, user_id</span>
+            </span><br/>
+        </div>
+
+      <br>
+
+      
+      <div class="bd-clipboard text-right">
+        <h3 class="text-left">Decrypt Base64 PowerShell Command Lines</h3>
+        <button class="btn btn-outline-info btn-clipboard" title data-original-title="Copy to clipboard" >Copy</button>
+      </div>
+      <div class="code" id="#splunkbase64cmdline">
+        <span>
+          <span style="color: #3dc9b0;">index</span><span style="color: #d4d4d4;">=hosting_env EventID=</span><span style="color: #b5cea8;">4688</span><span style="color: #d4d4d4;"> NewProcessName=</span><span style="color: #ce9178;">"*powershell.exe"</span><span style="color: #d4d4d4;"> CommandLine!=</span><span style="color: #ce9178;">"*Monitoring Agent*"</span></span><br/><span><span style="color: #d4d4d4;font-weight: bold;">|</span><span style="color: #d4d4d4;"> </span><span style="color: #569cd6;font-weight: bold;">sort</span><span style="color: #d4d4d4;"> </span><span style="color: #b5cea8;">0</span><span style="color: #d4d4d4;"> _time</span></span><br/><span><span style="color: #d4d4d4;font-weight: bold;">|</span><span style="color: #d4d4d4;"> </span><span style="color: #569cd6;font-weight: bold;">rex</span><span style="color: #d4d4d4;"> </span><span style="color: #3dc9b0;">field</span><span style="color: #d4d4d4;">=CommandLine </span><span style="color: #ce9178;">"-((?i)enc|encodedcommand|encode|en|e)\s\'?(?&lt;base</span><span style="color: #ce9178;">64_command&gt;\w{20,1000}\=?\=?)\'?"</span></span><br/><span><span style="color: #d4d4d4;font-weight: bold;">|</span><span style="color: #d4d4d4;"> </span><span style="color: #569cd6;font-weight: bold;">eval</span><span style="color: #d4d4d4;"> clength=</span><span style="color: #c586c0;">len</span><span style="color: #d4d4d4;">(base64_command)%</span><span style="color: #b5cea8;">4</span></span><br/><span><span style="color: #d4d4d4;font-weight: bold;">|</span><span style="color: #d4d4d4;"> </span><span style="color: #569cd6;font-weight: bold;">search</span><span style="color: #d4d4d4;"> clength=</span><span style="color: #b5cea8;">0</span></span><br/><span><span style="color: #d4d4d4;font-weight: bold;">|</span><span style="color: #d4d4d4;"> decrypt field=base64_command atob() emit(</span><span style="color: #ce9178;">'base64'</span><span style="color: #d4d4d4;">)</span></span><br/><span><span style="color: #d4d4d4;font-weight: bold;">|</span><span style="color: #d4d4d4;"> </span><span style="color: #569cd6;font-weight: bold;">search</span><span style="color: #d4d4d4;"> base64_decoded_command=*</span>
+        </span><br/>
+      </div>
+
+      <!-- FOOTER -->
+      <hr class="featurette-divider">
+      <footer class="container">
+        <p class="float-right"><a href="#">Back to top</a></p>
+        <p>&copy; By Rotem Simhi</p>
+      </footer>
+
+    </main>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/static/js/jquery-3.2.1.slim.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/static/js/jquery-slim.min.js"><\/script>')</script>
+    <script src="/static/js/popper.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/docs.min.js"></script>
+
+  </body>
+</html>
+
+

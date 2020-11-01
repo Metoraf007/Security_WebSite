@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+    
+        <title>Event IDs</title>
+        
+        <!-- Custom styles for Code Snipets -->
+        <link rel="stylesheet" href="/static/css/style.css">
+        <!-- Bootstrap core CSS -->
+        <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    
+        <!-- Custom styles for this template -->
+        <link href="/static/css/carousel.css" rel="stylesheet">
+      </head>
+    <body>
+        <div class="wrapper">
+            <div class="headline">PowerShell Methodology of Defense</div>
+
+            <h2>Security Rings</h2>
+            <ol>
+                <li><b>PS Versions</b></li>
+                <ul>
+                    <li><a href="PSScripts.html" target="_blank">Verify PowerShell 5.1 Installed</a></li>
+                    <li>Verify PowerShell 2 Disabled</li>
+                </ul>
+                <br>
+                <li><b>PowerShell Group Policy Objects</b></li>
+                <ol>
+                    <li>Enable PowerShell Logging</li>
+                    <ul>
+                        <li>Module Logging and Script Block Logging:</li>
+                        <li>
+                            <code>Computer Configuration\Policies\Administrative Templates\Windows Components\Windows PowerShell</code>
+                        </li>
+                        <ol>
+                            <li><b>Enable:</b> Turn on Module Logging</li>
+                            <li><b>Enable:</b> Turn on PowerShell Script Block Logging</li>
+                        </ol><br>
+                    </ul>
+                    <li>Enable PowerShell Transcription:</li>
+                    <ul>
+                        <li>
+                            <code>Computer Configuration\Policies\Administrative Templates\Windows Components\Windows PowerShell</code>
+                        </li>
+                        <ol>
+                            <li><b>Enable:</b> Turn on PowerShell Transcription</li>
+                            <li>Configure Transcription Directory Path</li>
+                            <li>Secure Transcription Directory Path</li><br>
+                        </ol>
+                    </ul>
+					<li><a href="https://4sysops.com/archives/set-powershell-execution-policy-with-group-policy/" target="_blank">Running Scripts signed by a code signing certificate</a></li>
+                    <ul>
+						<li>
+                            <code>Computer Configuration\Policies\Administrative Templates\Windows Components\Windows PowerShell\Turn on Script Execution</code>
+                        </li>
+                        <ol>
+							<li><b>Enable:</b> Allow only signed scripts</li>
+						</ol>
+                    </ul>
+					<br>
+                    <li><a href="https://www.splunk.com/en_us/blog/tips-and-tricks/101-things-the-mainstream-media-doesnt-want-you-to-know-about-powershell-logging.html" target="_blank">Enable Process Creation Auditing - Event ID 4688:</a></li>
+					<ul>
+                        <li>
+                            <code>Computer Configuration\Windows Settings\Security Settings\Advanced Audit Policy Configuration\System Audit Policies\Detailed Tracking\Audit Process Creation</code>
+                        </li>
+                        <ol>
+                            <li><b>Enable:</b> Configure the following audit events:</li>
+							<li><b>Enable:</b> Success</li>
+							<li><b>Enable:</b> Failure</li>
+                        </ol>
+                    </ul>
+					<br>
+                    <li>Include Command Line in Process:</li>
+                    <ul>
+                        <li>
+                            <code>Computer Configuration\Administrative Templates\System\Audit Process Creation\Include command line in process creation events</code>
+                        </li>
+                        <ol>
+                            <li><b>Enable:</b> Enabled</li><br>
+                        </ol>
+                    </ul>
+
+                </ol>
+				<br>
+                    <li><b>Create Profile.ps1 file for base configuration</b></li>
+                    <ul>
+                        <li><a href="PSScripts.html" target="_blank">Profile.ps1 Example Script</a></li>
+                    </ul>
+                    <br>
+
+                    <br>
+                    <li><b>Splunk</b></li>
+                    <ol>
+                        <li><a href="https://splunkbase.splunk.com/app/2655/" target="_blank"> Install Decrypt App</a></li>
+                        <li><a href="SplunkScripts.html" target="_blank">Create Powershell Alerts</a></li>
+                        <li>Create Splunk ES Alerts</li>
+                    </ol>
+            </ol>
+            <div class="push"></div>
+        </div>
+        <footer class='footer'>By Rotem Simhi &copy;</div>
+    </body>
+    
+</html>

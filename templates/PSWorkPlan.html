@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="Rotem Simhi">
+    
+        <link rel="icon" type="image/png" href="/static/psicon.png">
+    
+        <title>PowerShell Scripts Repository</title>
+    
+        <!-- Custom styles for Code Snipets -->
+        <link rel="stylesheet" href="/static/css/style.css">
+        
+        <!-- Bootstrap core CSS -->
+        <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    
+        <!-- Custom styles for this template -->
+        <link href="/static/css/sticky-footer-navbar.css" rel="stylesheet">
+      </head>
+
+    <body>
+
+        <!--START OF HEADER-->
+
+        <header>
+            <!-- Fixed navbar -->
+            <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #285c7e;">
+              <a class="navbar-brand" href="/index.html">Cyber Security</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav mr-auto">
+                      <li class="nav-item">
+                        <a class="nav-link" href="/index.html">Home <span class="sr-only">(current)</span></a>
+                      </li>
+                      <li class="nav-item dropdown" >
+                        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Work Plans</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item active" href="/PSWorkPlan.html">PowerShell Security</a>
+                        </div>
+                      </li>
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Scripts</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="/PSScripts.html">PowerShell Scripts</a>
+                          <a class="dropdown-item" href="/SplunkScripts.html">Splunk Scripts</a>
+                        </div>
+                      </li>
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Misc</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="/CheatSheet.html">Logging Cheat Sheets</a>
+                        </div>
+                      </li>
+                    </ul>
+                    <form class="form-inline mt-2 mt-md-0">
+                      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </div>
+            </nav>
+        </header>
+
+        <!--END OF HEADER-->
+
+        <!--START OF MAIN BODY-->
+
+        <main role="main" class="container" id="#top">
+            <h1 class="mt-5">PowerShell Methodology of Defense</h1>
+            <p class="lead">
+            <br>
+            <b>PowerShell Security</b><br>
+            We are taking a <b>layered approach</b> to PowerShell security.<br>
+            Organizations need to widen their security nets to protect and defend against opportunistic attacks and infections.<br>
+            The term "Layered" describes a defensive strategy featuring <b>multiple defensive layers</b> that are designed to slow down an attacker.
+            <br><br>
+            <b>Assume Breached</b><br>
+            <blockquote> “Fundamentally, <b>if somebody wants to get in, they're getting in...</b> accept that.<br>
+            What we tell clients is:
+            Number one, <b>you're in the fight</b>, whether you thought you were or not.<br>
+            Number two, <b>you almost certainly are penetrated</b>.“</blockquote>
+            Michael Hayden, Former Director of NSA & CIA
+            </p>
+            
+            <hr>
+
+        <!--START OF PS Version-->
+
+            <p class="lead"><b>Step 1</b> - Update PowerShell Version to the latest 5.1 on windows endpoints to ensure you get full security coverage</p>
+            <p><b>PowerShell Versions</b></p>
+
+            <button class="btn btn-outline-info col-sm" type="button" data-toggle="collapse" data-target="#testpowershell5" aria-expanded="true" aria-controls="testpowershell5">
+                Verify PowerShell 5.1 Installed
+            </button>
+            
+            <br>    
+
+            <div class="collapse" id="testpowershell5">
+                <div class="card card-body">
+                    <p class="lead">Verify PowerShell 5.1 Installed</p>
+                    <div class="bd-clipboard text-right">
+                        <button class="btn btn-outline-info btn-clipboard" title data-original-title="Copy to clipboard" >Copy</button>
+                    </div>
+                    <div class="code" id="#testps5">
+                        <span class="ps-pscommand">function</span>
+                        <span class="ps-pscommand">Test-LatestPSVersion</span>
+                        {<br />
+                        <span class="ps-string">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <span class="ps-variable">$Version</span>
+                        <span> =&#39;{</span><span class="ps-number">0</span>}.{<span class="ps-number">1</span>}&#39;
+                        <span class="ps-parameter">-f</span> (<span class="ps-variable">$PSVersionTable</span>.PSVersion.Major),
+                        (<span class="ps-variable">$PSVersionTable</span>.PSVersion.Minor)<br />
+                        <span class="ps-string">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <span class="ps-keyword">if</span>
+                        (<span class="ps-variable">$Version</span>
+                        <span class="ps-parameter">-eq</span><span class="ps-string">&nbsp;</span>&#39;<span class="ps-number">5.1</span>&#39;){<br />
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <span class="ps-keyword">return</span>
+                        <span class="ps-variable">$true</span><br />
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;</span> }<span class="ps-keyword">else</span>
+                        {<br />
+                        <span class="ps-string">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <span class="ps-keyword">return</span>
+                        <span class="ps-variable">$false</span><br />
+                        <span class="ps-string">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        }<br />
+                        }                    
+                    </div>
+                </div>
+            </div>
+            
+            <br>
+
+            <button class="btn btn-outline-info col-sm" type="button" data-toggle="collapse" data-target="#testpowershell2" aria-expanded="true" aria-controls="testpowershell2">
+                Verify PowerShell 2 Disabled
+            </button>
+
+            <br>
+
+            <div class="collapse" id="testpowershell2">
+                <div class="card card-body">
+                    <p class="lead">Verify PowerShell 2 Disabled</p>
+                    <div class="bd-clipboard text-right">
+                        <button class="btn btn-outline-info btn-clipboard" title data-original-title="Copy to clipboard" >Copy</button>
+                    </div>
+                    <div class="code" id="#testps2">
+                        <span class="ps-comment"># Desktops </span>
+                        <br>
+                        <span class="ps-pscommand">Get-WindowsOptionalFeature</span><span class="ps-string">&nbsp;</span><span class="ps-parameter">-Online</span><span class="ps-string">&nbsp;</span><span class="ps-parameter">-FeatureName</span><span class="ps-string">&nbsp;</span>MicrosoftWindowsPowerShellV2Root<span class="ps-string">&nbsp;</span><span class="ps-parameter">|</span><span class="ps-string">&nbsp;</span><span class="ps-pscommand">Select-Object</span><span class="ps-string">&nbsp;</span><span class="ps-parameter">-ExpandProperty</span><span class="ps-string">&nbsp;</span>State
+                        <br>
+                        <span class="ps-comment"># Servers </span>
+                        <br>
+                        <span class="ps-pscommand">Get-WindowsOptionalFeature</span><span class="ps-string">&nbsp;</span><span class="ps-parameter">-Online</span><span class="ps-string">&nbsp;</span><span class="ps-parameter">-FeatureName</span><span class="ps-string">&nbsp;</span>MicrosoftWindowsPowerShellv2<span class="ps-string">&nbsp;</span><span class="ps-parameter">|</span><span class="ps-string">&nbsp;</span><span class="ps-pscommand">Select-Object</span><span class="ps-string">&nbsp;</span><span class="ps-parameter">-ExpandProperty</span><span class="ps-string">&nbsp;</span>State
+                    </div>
+                </div>
+            </div>
+
+            <br>
+
+            <button class="btn btn-outline-info col-sm" type="button" data-toggle="collapse" data-target="#dispowershell2" aria-expanded="true" aria-controls="dispowershell2">
+                Disable PowerShell 2
+            </button>
+
+            <br>
+
+            <div class="collapse" id="dispowershell2">
+                <div class="card card-body">
+                    <p class="lead">Disable PowerShell 2</p>
+                    <div class="bd-clipboard text-right">
+                        <button class="btn btn-outline-info btn-clipboard" title data-original-title="Copy to clipboard" >Copy</button>
+                    </div>
+                    <div class="code" id="#testps2">
+                        <span class="ps-comment"># Desktops </span>
+                        <br>
+                        <span class="ps-pscommand">Get-WindowsOptionalFeature</span><span class="ps-string">&nbsp;</span><span class="ps-parameter">-Online</span><span class="ps-string">&nbsp;</span><span class="ps-parameter">-FeatureName</span><span class="ps-string">&nbsp;</span>MicrosoftWindowsPowerShellV2Root<span class="ps-string">&nbsp;</span><span class="ps-parameter">|</span><span class="ps-string">&nbsp;</span><span class="ps-pscommand">Select-Object</span><span class="ps-string">&nbsp;</span><span class="ps-parameter">-ExpandProperty</span><span class="ps-string">&nbsp;</span>State
+                        <br>
+                        <span class="ps-comment"># Servers </span>
+                        <br>
+                        <span class="ps-pscommand">Get-WindowsOptionalFeature</span><span class="ps-string">&nbsp;</span><span class="ps-parameter">-Online</span><span class="ps-string">&nbsp;</span><span class="ps-parameter">-FeatureName</span><span class="ps-string">&nbsp;</span>MicrosoftWindowsPowerShellv2<span class="ps-string">&nbsp;</span><span class="ps-parameter">|</span><span class="ps-string">&nbsp;</span><span class="ps-pscommand">Select-Object</span><span class="ps-string">&nbsp;</span><span class="ps-parameter">-ExpandProperty</span><span class="ps-string">&nbsp;</span>State
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+        <!--END OF PS Version-->
+
+        <!--START OF PS GPO-->
+            <p class="lead"><b>Step 2</b> - Generate proper and refine event logs so you could later create advanced SIEM based alerts</p>
+
+            <p><b>PowerShell Group Policy Objects</b></p>
+
+            <p>Event Viewer Logs</p>
+
+            <button class="btn btn-outline-info col-sm" type="button" data-toggle="collapse" data-target="#pslogging" aria-expanded="false" aria-controls="pslogging">
+                Enable PowerShell Module Logging
+            </button>
+
+            <br>
+
+            <div class="collapse" id="pslogging">
+                <div class="card card-body">
+                    <p class="lead">PowerShell logs enables you to recieve details about PowerShell operations, such as starting and stopping the engine and providers, and executing PowerShell commands.</p>
+                    <div class="code">
+                        <p>Enable Module Logging and Script Block Logging</p>
+                        <code>Computer Configuration\Policies\Administrative Templates\Windows Components\Windows PowerShell\Turn on Module Logging</code><br>
+                            <b>Enable:</b> Turn on Module Logging <br>
+                            <b>Module Names:</b>
+                            <ul>
+                                <li>Microsoft.PowerShell.*</li>
+                                <li>Microsoft.WSMAN.Management</li>
+                            </ul>                            
+                        <br>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+
+            <button class="btn btn-outline-info col-sm" type="button" data-toggle="collapse" data-target="#pssblogging" aria-expanded="false" aria-controls="pssblogging">
+                Enable PowerShell ScriptBlock Logging
+            </button>
+
+            <br>
+
+            <div class="collapse" id="pssblogging">
+                <div class="card card-body">
+                    <p class="lead">PowerShell logs enables you to recieve details about PowerShell operations, such as starting and stopping the engine and providers, and executing PowerShell commands</p>
+                    <div class="code">
+                        <p>Enable ScriptBlock Logging and Script Block Logging</p>
+                        <code>Computer Configuration\Policies\Administrative Templates\Windows Components\Windows PowerShell\Turn on PowerShell Script Block Logging</code><br>
+                        <b>Enable:</b> Turn on PowerShell Script Block Logging
+                        <br>
+                    </div>
+                    <p class="lead">You can look for the payload in Event ID 4103.</p>
+                </div>
+            </div>
+
+            <br>
+
+            <p>Transcription Logs</p>
+
+            <button class="btn btn-outline-info col-sm" type="button" data-toggle="collapse" data-target="#pstrans1" aria-expanded="false" aria-controls="pstrans1">
+                Enable PowerShell Transcription
+            </button>
+
+            <br>
+
+            <div class="collapse" id="pstrans1">
+                <div class="card card-body">
+                    <p class="lead">A PowerShell transcript is a simple text file that contains a history of all commands and their output</p>
+                    <div class="code">
+                        How to enable PowerShell Transcription<br>
+                        <code>Computer Configuration\Policies\Administrative Templates\Windows Components\Windows PowerShell\PowerShell Transcription</code>
+                        <ol>
+                            <li><b>Enable:</b> Turn on PowerShell Transcription</li>
+                            <li>Configure Transcription Directory Path</li>
+                            <li>Secure Transcription Directory Path</li><br>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+
+            <button class="btn btn-outline-info col-sm" type="button" data-toggle="collapse" data-target="#pstrans2" aria-expanded="false" aria-controls="pstrans2">
+                Create Transcription Directory
+            </button>
+
+            <br>
+
+            <div class="collapse" id="pstrans2">
+                <div class="card card-body">
+                    <p class="lead">A PowerShell transcript is a simple text file that contains a history of all commands and their output</p>
+                    <div class="code">
+                        How to enable PowerShell Transcription<br>
+                        <code>Computer Configuration\Policies\Administrative Templates\Windows Components\Windows PowerShell\PowerShell Transcription</code>
+                        <ol>
+                            <li>Configure Transcription Output Directory</li>
+                            <code>D:\Logs\Transcription\</code>
+                            <br>
+                        </ol>
+                    </div>
+                    <p class="lead"> 
+                        The OutputDirectory setting lets you collect transcripts to a central location (UNC path) for later review. <br>
+                        If you implement this policy, ensure that access to the central share is limited to prevent users from reading previously-written transcripts.<br>
+                        The following PowerShell script creates a “Transcripts” SMB share on a server that follows this best practice.
+                    </p>
+                </div>
+            </div>
+
+            <br>
+
+            <button class="btn btn-outline-info col-sm" type="button" data-toggle="collapse" data-target="#pstrans3" aria-expanded="false" aria-controls="pstrans3">
+                Secure Transcription Directory
+            </button>
+
+            <br>
+
+            <div class="collapse" id="pstrans3">
+                <div class="card card-body">
+                    <p class="lead">A PowerShell transcript is a simple text file that contains a history of all commands and their output</p>
+                    <div class="code">
+                        <br>
+
+                    </div>
+                    <p class="lead"> 
+                        The OutputDirectory setting lets you collect transcripts to a central location (UNC path) for later review. <br>
+                        If you implement this policy, ensure that access to the central share is limited to prevent users from reading previously-written transcripts.<br>
+                        The following PowerShell script creates a “Transcripts” SMB share on a server that follows this best practice.
+                    </p>
+                </div>
+            </div>
+
+            <br>
+
+            <p>
+                <u>Event Logs</u><br>
+                Track and monitor all PowerShell related occurances including Process Creation, Command Line in Process and Registry Modifications.<br>
+            </p>
+
+            <button class="btn btn-outline-info col-sm" type="button" data-toggle="collapse" data-target="#evl4688" aria-expanded="false" aria-controls="evl4688">
+                Enable Process Creation Auditing
+            </button>
+
+            <br>
+
+            <div class="collapse" id="evl4688">
+                <div class="card card-body">
+                    <p class="lead">
+                        <u>Event ID 4688</u> <br>
+                        This security policy setting determines whether the operating system generates audit events when a process is created (starts) and the name of the program or user that created it.
+                        These audit events can help you understand how a computer is being used and to track user activity.
+                        </p>
+                    <div class="code">
+                        How to Audit Process Creation<br>
+                            <code>Computer Configuration\Windows Settings\Security Settings\Advanced Audit Policy Configuration\System Audit Policies\Detailed Tracking\Audit Process Creation</code>
+                        <ol>
+                            <li><b>Enable:</b> Configure the following audit events:</li>
+							<li><b>Enable:</b> Success</li>
+							<li><b>Enable:</b> Failure</li>
+                        </ol>
+                    </div>
+                    <br>
+                    <p class="lead">
+                        More information about enabling <a href="https://www.splunk.com/en_us/blog/tips-and-tricks/101-things-the-mainstream-media-doesnt-want-you-to-know-about-powershell-logging.html" target="_blank"> "Process Creation Auditing" - Event ID 4688</a>
+                    </p>
+                </div>
+            </div>
+
+            <br>
+
+            <button class="btn btn-outline-info col-sm" type="button" data-toggle="collapse" data-target="#evl4688clp" aria-expanded="false" aria-controls="evl4688clp">
+                Include Command Line in Process
+            </button>
+
+            <br>
+
+            <div class="collapse" id="evl4688clp">
+                <div class="card card-body">
+                    <p class="lead">
+                        <u>Event ID 4688 - Extention</u> <br>
+                        This setting only applies when the Audit Process Creation policy is enabled.
+                        Command Line in Process Shows information for every process will be logged in plain text in the security event log as part of the Audit Process Creation event 4688,
+                         "a new process has been created," on the workstations and servers on which this policy setting is applied.
+                        </p>
+                    <div class="code">
+                        <li>How to Audit Command Line in Process</li>
+                        <li>
+                            <code>Computer Configuration\Administrative Templates\System\Audit Process Creation\Include command line in process creation events</code>
+                        </li>
+                        <ol>
+                            <li><b>Enable:</b> Enabled</li><br>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+
+            <button class="btn btn-outline-info col-sm" type="button" data-toggle="collapse" data-target="#evl4657" aria-expanded="false" aria-controls="evl4657">
+                Registry value Modification Logging
+            </button>
+
+            <br>
+
+            <div class="collapse" id="evl4657">
+                <div class="card card-body">
+                    <p class="lead">
+                        <u>Event ID 4657</u> <br>
+                        This event documents creation, modification and deletion of registry VALUES.
+                        </p>
+                    <div class="code">
+                        How to Audit Registry value modifications<br>
+                        <code>Computer Configuration\Windows Settings\Security Settings\Advanced Audit Policy Configuration\Audit Policies\Object Access\Audit Regisrty</code>
+                        <ol>
+                            <li><b>Enable:</b> Configure the following audit events:</li>
+                            <li><b>Enable:</b> Success</li>
+                            <li><b>Enable:</b> Failure</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+
+            <p>
+                <u>Scripts</u> <br>
+                The Execution Policy is <b><span style="color: red;"> NOT</span></b> a security boundary or mechanism! <br>
+                ‘Restricted’ by default, just prevents ps.1 scripts from running accidently. <br>
+                Execution Policy is saved in the registry
+            </p>
+
+            <button class="btn btn-outline-info col-sm" type="button" data-toggle="collapse" data-target="#execpolgpo" aria-expanded="false" aria-controls="execpolgpo">
+                Enable Script Execution Policy
+            </button>
+
+            <br>
+
+            <div class="collapse" id="execpolgpo">
+                <div class="card card-body">
+                    <p class="lead">
+                        Running Scripts signed by a code signing certificate
+                    </p>
+                    <div class="code">
+                        Set PowerShell Execution Policy: "AllSigned"
+                        <li>
+                            <code>Computer Configuration\Policies\Administrative Templates\Windows Components\Windows PowerShell\Turn on Script Execution</code>
+                        </li>
+                        <ol>
+							<li><b>Enable:</b> Allow only signed scripts</li>
+						</ol>
+                    </div>
+                    <p class="lead">
+                        'AllSigned' policy makes sure you could only run signed scripts.<br>
+                        The Signature must be trusted on local machine.<br>
+                        For more information about <a href="https://4sysops.com/archives/set-powershell-execution-policy-with-group-policy/" target="_blank">running scripts signed by a code signing certificate</a>.
+                    </p>
+                </div>
+            </div>
+
+            <!--END OF PS GPO-->
+
+            <hr>
+
+            <!-- START OF PS Script Signing-->
+            <p class="lead"><b>Step 3</b> - Generate a Script Signing mechanism and a Script Repository </p>
+
+            <p>
+                <b>PowerShell Script Signing</b><br>
+                Use Gov.il's PKI Team to generate a Code Singing Certificate in-order to sign PowerShell Scripts and Modules to ensure you are running validated scripts.
+            </p>
+            <button class="btn btn-outline-info col-sm" type="button" data-toggle="collapse" data-target="#codesiging" aria-expanded="false" aria-controls="codesiging">
+                Create a Code Signing Authority for Scripts and Module Signing
+            </button>
+
+            <br>
+
+            <div class="collapse" id="codesiging">
+                <div class="card card-body">
+                    <li><b>Example script for signing PowerShell Scripts and Module</b></li>
+                    <div class="bd-clipboard text-right">
+                        <button class="btn btn-outline-info btn-clipboard" title data-original-title="Copy to clipboard" >Copy</button>
+                      </div>
+                      <div class="code" id="#3">
+                        <span class="ps-comment">## Signs a file</span></br>
+                        <span class="ps-keyword">param</span>([string] <span class="ps-variable">$file</span>=$(<span class="ps-keyword">throw</span> <span class="ps-string">"Please specify a filename."</span>))
+                      </br>
+                        <span class="ps-variable">$cert</span> = @(<span class="ps-pscommand">Get-ChildItem</span> cert:\CurrentUser\My<span class="ps-parameter"> -codesigning</span>)[<span class="ps-number">0</span>]
+                        
+                      </br>
+                        <span class="ps-pscommand">Set-AuthenticodeSignature</span> <span class="ps-variable">$file</span> <span class="ps-variable">$cert</span>
+                        </span>
+                      </div>
+                </div>
+            </div>
+
+            <br>
+
+            <button class="btn btn-outline-info col-sm" type="button" data-toggle="collapse" data-target="#executionpolicy" aria-expanded="false" aria-controls="executionpolicy">
+                Set Execution Policy "AllSigned"
+            </button>
+            
+            <br>
+
+            <div class="collapse" id="executionpolicy">
+                    <div class="card card-body">
+                        Scripts can run.<br>
+                        Requires that all scripts and configuration files be signed by a trusted publisher, including scripts that you write on the local computer.<br>
+                        Prompts you before running scripts from publishers that you haven't yet classified as trusted or untrusted.<br>
+                        <b>Risks running signed, but malicious, scripts.</b>
+
+                    </div>
+              </div>
+
+            <br>
+
+            <u>PowerShell Gallery</u>
+            <br>
+
+            <p>
+                Create a PowerShell Gallery in the secure environment to import modules over https connection.
+            </p>
+
+            <br>
+            <!-- END OF PS Script Signing-->
+
+            <hr>
+
+            <!-- START OF PS Sysmon Logging-->
+
+            <p class="lead"><b>Step 4</b> - Install and configure Sysem Monitor agents on endpoints and configure Image Loading</p>
+
+            <p><b>Sysmon</b></p>
+            <p class="lead">
+                System Monitor (Sysmon) is a Windows system service and device driver that, once installed on a system, remains resident across system reboots to monitor and log system activity to the Windows event log.
+                It provides detailed information about process creations, network connections, and changes to file creation time.
+                By collecting the events it generates using Windows Event Collection or SIEM agents and subsequently analyzing them, you can identify malicious or anomalous activity and understand how intruders and malware operate on your network.
+            </p>
+            <button class="btn btn-outline-info col-sm" type="button" data-toggle="collapse" data-target="#Sysmon7" aria-expanded="false" aria-controls="Sysmon7">
+                Monitor event ID 7 for PowerShell Image Loading
+            </button>
+            <br>
+            <div class="collapse" id="Sysmon7">
+                <div class="card card-body">
+                    <div class="bd-clipboard text-right">
+                        <button class="btn btn-outline-info btn-clipboard" title data-original-title="Copy to clipboard">Copy</button>
+                    </div> 
+                    <pre><code>
+                            &lt;RuleGroup name="" groupRelation="or"&gt;
+                                &lt;ImageLoad onmatch="include"&gt;
+                                    &lt;ImageLoaded condition="image"&gt;System.Management.Automation.ni.dll&lt;/ImageLoaded&gt;
+                                    &lt;ImageLoaded condition="image">System.Management.Automation.dll&lt;/ImageLoaded&gt;
+                                &lt;/ImageLoad&gt;
+                            &lt;/RuleGroup&gt;
+                    </code></pre>
+                </div>
+              </div>
+
+            <!-- END OF PS Sysmon Logging-->
+
+                <hr class="featurette-divider">
+
+            <!-- START OF PS Splunk Alerts-->
+                <p class="lead"><b>Step 5</b> - Create Rules and Alerts in your SIEM to monitor events</p>
+
+                    <p><b>Splunk</b></p>
+                    <p><u><a href="SplunkScripts.html" target="_blank">Create Powershell Alerts</a></u></p>
+                    <button class="btn btn-outline-info col-sm" type="button" data-toggle="collapse" data-target="#splunksysmon7" aria-expanded="false" aria-controls="splunksysmon7">
+                        Monitor Sysmon event ID 7 for PowerShell Image Loading
+                    </button>
+                    <br>
+                    <div class="collapse" id="splunksysmon7">
+                        <div class="card card-body">
+                            <p>Look out for "System.Management.Automation.ni.dll" or "System.Management.Automation.dll" Image Loading by application other than PowerShell.exe</p>
+                            <div class="bd-clipboard text-right">
+                                <button class="btn btn-outline-info btn-clipboard" title data-original-title="Copy to clipboard">Copy</button>
+                            </div> 
+                            <div class="code" id="#splunksysmon7">
+                                <span>
+                                    <span style="color: #3dc9b0;">index</span><span style="color: #d4d4d4;">=</span><span style="color: #ce9178;">"*"</span>
+                                    <span style="color: #3dc9b0;">sourcetype</span><span style="color: #d4d4d4;">=</span><span style="color: #ce9178;">"XmlWinEventLog:Microsoft-Windows-Sysmon/Operational</span>
+                                </span><br/>
+                                <span>
+                                    <span style="color: #d4d4d4;">EventID</span><span style="color: #d4d4d4;">=</span><span style="color: #b5cea8;">7</span>
+                                </span><br/>
+                                <span>
+                                    <span style="color: #d4d4d4;">Image!=</span>
+                                    <span style="color: #ce9178;">"C:\\Program Files\\Microsoft Monitoring Agent\\Agent\\MonitoringHost.exe"</span>
+                                    <span style="color: #d4d4d4;">                 
+                                    </span>
+                                </span><br/>
+                                <span>
+                                    <span style="color: #d4d4d4;">Image!=</span>
+                                    <span style="color: #ce9178;">"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"</span>
+                                </span><br/>
+                                <span>
+                                    <span style="color: #d4d4d4;font-weight: bold;">| </span><span style="color: #569cd6;font-weight: bold;">stats </span><span style="color: #c586c0;">count </span><span style="color: #dd6a6f;">by</span><span style="color: #d4d4d4;"> host, Image, ImageLoaded, user_id</span>
+                                </span>
+                              </div>
+                        </div>
+                    </div>
+                    <br>
+
+
+                    <button class="btn btn-outline-info col-sm" type="button" data-toggle="collapse" data-target="#splunk4688cmdline" aria-expanded="false" aria-controls="splunk4688cmdline">
+                        Looking for the CommandLine in event ID 4688 
+                    </button>
+
+                    <br>
+
+                    <div class="collapse" id="splunk4688cmdline">
+                        <div class="card card-body">
+                            <p>Look out for malicious PowerShell runs with the command line output</p>
+                            <div class="bd-clipboard text-right">
+                                <button class="btn btn-outline-info btn-clipboard" title data-original-title="Copy to clipboard">Copy</button>
+                            </div> 
+                            <div class="code" id="#splunk4688cmdline">
+                                <span><span style="color: #3dc9b0;">index</span><span style="color: #d4d4d4;">=</span><span style="color: #ce9178;">"*"</span></span><br/><span><span style="color: #d4d4d4;">EventID=</span><span style="color: #b5cea8;">4688</span><span style="color: #d4d4d4;"> Computer=</span><span style="color: #ce9178;">"Hosting-Test.pita.tehila.gov.il"</span><span style="color: #d4d4d4;"> NewProcessName=</span><span style="color: #ce9178;">"*powershell.exe"</span><span style="color: #d4d4d4;"> CommandLine!=</span><span style="color: #ce9178;">"*Monitoring Agent*"</span></span><br/><span><span style="color: #d4d4d4;font-weight: bold;">|</span><span style="color: #d4d4d4;"> </span><span style="color: #569cd6;font-weight: bold;">sort</span><span style="color: #d4d4d4;"> </span><span style="color: #b5cea8;">0</span><span style="color: #d4d4d4;"> _time</span></span><br/><span><span style="color: #d4d4d4;font-weight: bold;">|</span><span style="color: #d4d4d4;"> </span><span style="color: #569cd6;font-weight: bold;">table</span><span style="color: #d4d4d4;"> _time, NewProcessName, CommandLine, SubjectUserSi</span><span style="color: #d4d4d4;">d, Computer</span></span><br/><span><span> </span></span><br/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <button class="btn btn-outline-info col-sm" type="button" data-toggle="collapse" data-target="#splunkbase64cmdline" aria-expanded="false" aria-controls="splunkbase64cmdline">
+                        Decrypt Base64 Command lines
+                    </button>
+
+                    <br>
+
+                    <div class="collapse" id="splunkbase64cmdline">
+                        <div class="card card-body">
+                            <p>Look out for malicious PowerShell runs with the command line output - Decrypt Base64 Commands</p>
+                            <div class="bd-clipboard text-right">
+                                <button class="btn btn-outline-info btn-clipboard" title data-original-title="Copy to clipboard">Copy</button>
+                            </div> 
+                            <div class="code" id="#splunkbase64cmdline">
+                                <span>
+                                    <span style="color: #3dc9b0;">index</span><span style="color: #d4d4d4;">=hosting_env EventID=</span><span style="color: #b5cea8;">4688</span><span style="color: #d4d4d4;"> NewProcessName=</span><span style="color: #ce9178;">"*powershell.exe"</span><span style="color: #d4d4d4;"> CommandLine!=</span><span style="color: #ce9178;">"*Monitoring Agent*"</span></span><br/><span><span style="color: #d4d4d4;font-weight: bold;">|</span><span style="color: #d4d4d4;"> </span><span style="color: #569cd6;font-weight: bold;">sort</span><span style="color: #d4d4d4;"> </span><span style="color: #b5cea8;">0</span><span style="color: #d4d4d4;"> _time</span></span><br/><span><span style="color: #d4d4d4;font-weight: bold;">|</span><span style="color: #d4d4d4;"> </span><span style="color: #569cd6;font-weight: bold;">rex</span><span style="color: #d4d4d4;"> </span><span style="color: #3dc9b0;">field</span><span style="color: #d4d4d4;">=CommandLine </span><span style="color: #ce9178;">"-((?i)enc|encodedcommand|encode|en|e)\s\'?(?&lt;base</span><span style="color: #ce9178;">64_command&gt;\w{20,1000}\=?\=?)\'?"</span></span><br/><span><span style="color: #d4d4d4;font-weight: bold;">|</span><span style="color: #d4d4d4;"> </span><span style="color: #569cd6;font-weight: bold;">eval</span><span style="color: #d4d4d4;"> clength=</span><span style="color: #c586c0;">len</span><span style="color: #d4d4d4;">(base64_command)%</span><span style="color: #b5cea8;">4</span></span><br/><span><span style="color: #d4d4d4;font-weight: bold;">|</span><span style="color: #d4d4d4;"> </span><span style="color: #569cd6;font-weight: bold;">search</span><span style="color: #d4d4d4;"> clength=</span><span style="color: #b5cea8;">0</span></span><br/><span><span style="color: #d4d4d4;font-weight: bold;">|</span><span style="color: #d4d4d4;"> decrypt field=base64_command atob() emit(</span><span style="color: #ce9178;">'base64'</span><span style="color: #d4d4d4;">)</span></span><br/><span><span style="color: #d4d4d4;font-weight: bold;">|</span><span style="color: #d4d4d4;"> </span><span style="color: #569cd6;font-weight: bold;">search</span><span style="color: #d4d4d4;"> base64_decoded_command=*</span>
+                                  </span><br/>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    
+                        
+                        <ul>
+                            <li>4100 - Execution Policy Bypass and No Profile Execution</li>
+                            <li>4104 - PowerShell Modules greater than 1,000 characters</li>
+                        </ul>
+                        <li><a href="https://www.varonis.com/blog/sysmon-threat-detection-guide/" target="_blank">Create Powershell Alerts using Sysmon Source Type</a></li>
+                        <li>Create Splunk ES Alerts</li>
+
+            <!-- END OF PS Splunk Alerts-->
+
+            <hr class="featurette-divider">
+            
+            <footer class="container">
+                <p class="float-right"><a href="#">Back to top</a></p>
+                <p>&copy; By Rotem Simhi</p>
+              </footer>
+        </main>
+
+          <!-- Bootstrap core JavaScript
+          ================================================== -->
+          <!-- Placed at the end of the document so the pages load faster -->
+          <script src="/static/js/jquery-3.2.1.slim.min.js"></script>
+          <script>window.jQuery || document.write('<script src="/static/js/jquery-slim.min.js"><\/script>')</script>
+          <script src="/static/js/popper.min.js"></script>
+          <script src="/static/js/bootstrap.min.js"></script>
+          <script src="/static/js/docs.min.js"></script>
+    </body>
+</html>

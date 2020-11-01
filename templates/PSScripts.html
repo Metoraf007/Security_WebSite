@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Rotem Simhi">
+
+    <link rel="icon" type="image/png" href="/static/psicon.png">
+
+    <title>PowerShell Scripts Repository</title>
+
+    <!-- Custom styles for Code Snipets -->
+    <link rel="stylesheet" href="/static/css/style.css">
+    
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/css/sticky-footer-navbar.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+        <!--START OF HEADER-->
+
+        <header>
+          <!-- Fixed navbar -->
+          <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #285c7e;">
+            <a class="navbar-brand" href="/index.html">Cyber Security</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarCollapse">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item ">
+                      <a class="nav-link " href="/index.html">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item dropdown" >
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Work Plans</a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/PSWorkPlan.html">PowerShell Security</a>
+                      </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Scripts</a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item active" href="/PSScripts.html">PowerShell Scripts</a>
+                        <a class="dropdown-item" href="/SplunkScripts.html">Splunk Scripts</a>
+                      </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Misc</a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/CheatSheet.html">Logging Cheat Sheets</a>
+                      </div>
+                    </li>
+                  </ul>
+                  <form class="form-inline mt-2 mt-md-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                  </form>
+              </div>
+          </nav>
+      </header>
+
+      <!--END OF HEADER-->
+
+    <!-- Begin page content -->
+    <main role="main" class="container" id="#top">
+      <h1 class="mt-5">PowerShell Scripts Repository</h1>
+      <p class="lead">Copy a script and use it.</p>
+      <p>Back to the<a href="/PSWorkPlan.html"> PowerShell Work Plan</a> page.</p>
+      
+      <h3 class="mt-5">Test if using Powershell Version 5.1</h3>
+      
+      <div class="bd-clipboard text-right">
+        <button class="btn btn-outline-info btn-clipboard" title data-original-title="Copy to clipboard" >Copy</button>
+      </div>
+      <div class="code" id="#ps5">
+          <span class="ps-pscommand">function</span>
+          <span class="ps-pscommand">Test-LatestPSVersion</span>
+          {<br />
+          <span class="ps-string">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <span class="ps-variable">$Version</span>
+          <span> =&#39;{</span><span class="ps-number">0</span>}.{<span class="ps-number">1</span>}&#39;
+          <span class="ps-parameter">-f</span> (<span class="ps-variable">$PSVersionTable</span>.PSVersion.Major),
+          (<span class="ps-variable">$PSVersionTable</span>.PSVersion.Minor)<br />
+          <span class="ps-string">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <span class="ps-keyword">if</span>
+          (<span class="ps-variable">$Version</span>
+          <span class="ps-parameter">-eq</span><span class="ps-string">&nbsp;</span>&#39;<span class="ps-number">5.1</span>&#39;){<br />
+          <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <span class="ps-keyword">return</span>
+          <span class="ps-variable">$true</span><br />
+          <span>&nbsp;&nbsp;&nbsp;&nbsp;</span> }<span class="ps-keyword">else</span>
+          {<br />
+          <span class="ps-string">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <span class="ps-keyword">return</span>
+          <span class="ps-variable">$false</span><br />
+          <span class="ps-string">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          }<br />
+          }
+      </div>
+    <br>
+
+    <h3>Test if using Powershell Version 2</h3>
+
+    <div class="bd-clipboard text-right">
+      <button class="btn btn-outline-info btn-clipboard" title data-original-title="Copy to clipboard" >Copy</button>
+    </div>
+        <div class="code" id="#testps2">
+            <span class="ps-comment"># Desktops </span>
+            <br>
+            <span class="ps-pscommand">Get-WindowsOptionalFeature</span><span class="ps-string">&nbsp;</span><span class="ps-parameter">-Online</span><span class="ps-string">&nbsp;</span><span class="ps-parameter">-FeatureName</span><span class="ps-string">&nbsp;</span><span class="ps-string">MicrosoftWindowsPowerShellV2Root</span><span class="ps-string">&nbsp;</span><span class="ps-parameter">|</span><span class="ps-string">&nbsp;</span><span class="ps-pscommand">Select-Object</span><span class="ps-string">&nbsp;</span><span class="ps-parameter">-ExpandProperty</span><span class="ps-string">&nbsp;</span><span class="ps-string">State</span>
+            <br>
+            <span class="ps-comment"># Servers </span>
+            <br>
+            <span class="ps-pscommand">Get-WindowsOptionalFeature</span><span class="ps-string">&nbsp;</span><span class="ps-parameter">-Online</span><span class="ps-string">&nbsp;</span><span class="ps-parameter">-FeatureName</span><span class="ps-string">&nbsp;</span><span class="ps-string">MicrosoftWindowsPowerShellv2</span><span class="ps-string">&nbsp;</span><span class="ps-parameter">|</span><span class="ps-string">&nbsp;</span><span class="ps-pscommand">Select-Object</span><span class="ps-string">&nbsp;</span><span class="ps-parameter">-ExpandProperty</span><span class="ps-string">&nbsp;</span><span class="ps-string">State</span>
+        </div>
+    <br>
+
+    <h3>Disable Powershell Version 2</h3>
+    
+    <div class="bd-clipboard text-right">
+      <button class="btn btn-outline-info btn-clipboard" title data-original-title="Copy to clipboard" >Copy</button>
+    </div>
+    <div class="code" id="#disbaleps2">
+        <span class="ps-comment"># Desktops </span>
+        <br>
+        <span class="ps-pscommand">Disable-WindowsOptionalFeature</span><span class="ps-string">&nbsp;</span><span class="ps-parameter">-Online</span><span class="ps-string">&nbsp;</span><span class="ps-parameter">-FeatureName</span><span class="ps-string">&nbsp;</span><span class="ps-string">MicrosoftWindowsPowerShellV2Root</span><br>
+        <span class="ps-comment"># Servers </span>
+        <br>
+        <span class="ps-pscommand">Disable-WindowsOptionalFeature</span><span class="ps-string">&nbsp;</span><span class="ps-parameter">-Online</span><span class="ps-string">&nbsp;</span><span class="ps-parameter">-FeatureName</span><span class="ps-string">&nbsp;</span><span class="ps-string">MicrosoftWindowsPowerShellv2</span><br>
+    </div>
+
+    <br>
+    <h3>Signing a script</h3>
+
+    <div class="bd-clipboard text-right">
+      <button class="btn btn-outline-info btn-clipboard" title data-original-title="Copy to clipboard" >Copy</button>
+    </div>
+    <div class="code" id="#3">
+      <span class="ps-comment">## Signs a file</span><br>
+      <span class="ps-keyword">param</span>(<span class="ps-comment">[string]</span><span class="ps-variable">$file</span>=$(<span class="ps-keyword">throw</span> "<span class="ps-string">Please specify a filename</span>."))
+      <br>
+      <span class="ps-variable">$cert</span> = @(<span class="ps-pscommand">Get-ChildItem</span> cert:\CurrentUser\My<span class="ps-parameter"> -codesigning</span>)[<span class="ps-number">0</span>]
+      
+      <br>
+      <span class="ps-pscommand">Set-AuthenticodeSignature</span> <span class="ps-variable">$file</span> <span class="ps-variable">$cert</span>
+      </span>
+    </div>
+
+    <br>
+    <h3>Transcription Folder Permissions</h3>
+
+    <div class="bd-clipboard text-right">
+      <button class="btn btn-outline-info btn-clipboard" title data-original-title="Copy to clipboard">Copy</button>
+    </div>
+    <div class="code" id="#3">
+      <span class="ps-comment"> ## Kill all inherited permissions</span><br>
+      <span class="ps-variable">$acl</span> = <span class="ps-pscommand">Get-Acl</span> "<span class="ps-string">D:\Logs\Transcripts</span>" <span class="ps-variable">$acl</span><span class="ps-string">.SetAccessRuleProtection</span>(<span class="ps-variable">$true</span>, <span class="ps-variable">$false</span>)<br>
+      <br>
+
+      <span class="ps-comment">## Grant Administrators full control</span><br>
+      <span class="ps-variable">$administrators </span> = <span class="ps-comment">[System.Security.Principal.NTAccount]</span>"<span class="ps-string">Administrators</span>"<br>
+      <span class="ps-variable">$permission</span> = <span class="ps-variable">$administrators </span>, "<span class="ps-string">FullControl</span>", "<span class="ps-string">ObjectInherit</span>, <span class="ps-string">ContainerInherit</span>”, “<span class="ps-string">None</span>”, “<span class="ps-string">Allow</span>"<br>
+      <span class="ps-variable">$accessRule </span>= <span class="ps-pscommand">New-Object</span> System.Security.AccessControl.FileSystemAccessRule <span class="ps-variable">$permission </span><br>
+      <span class="ps-variable">$acl</span><span class="ps-string"></span>.AddAccessRule(<span class="ps-variable">$accessRule</span>)<br>
+      <br>
+
+      <span class="ps-comment">## Grant everyone else Write and ReadAttributes. This prevents users from listing</span> <br>
+      <span class="ps-comment">## transcripts from other machines on the domain.</span> <br>
+      <span class="ps-variable">$everyone </span>= <span class="ps-comment">[System.Security.Principal.NTAccount]</span> “<span class="ps-string">Everyone</span>” <br>
+      <span class="ps-variable">$permission </span>= <span class="ps-variable">$everyone</span>,“<span class="ps-string">Write</span>, <span class="ps-string">ReadAttributes</span>”, “<span class="ps-string">ObjectInherit</span>, <span class="ps-string">ContainerInherit</span>”, “<span class="ps-string">None</span>”, “<span class="ps-string">Allow</span>” <br> 
+      <span class="ps-variable">$accessRule </span>= <span class="ps-pscommand">New-Object</span> System.Security.AccessControl.FileSystemAccessRule <br>
+      <span class="ps-variable">$permission</span> <span class="ps-variable">$acl</span>.AddAccessRule(<span class="ps-variable">$accessRule</span>) <br>
+      <br>
+
+      <span class="ps-comment">## Deny “Creator Owner” everything. This prevents users from </span><br>
+      <span class="ps-comment">## viewing the content of previously written files. </span> <br>
+      <span class="ps-variable">$creatorOwner</span> = <span class="ps-comment">[System.Security.Principal.NTAccount]</span> “<span class="ps-string">Creator Owner</span>” <br>
+      <span class="ps-variable">$permission </span>= <span class="ps-variable">$creatorOwner</span>,“<span class="ps-string">FullControl</span>”,“<span class="ps-string">ObjectInherit</span>, <span class="ps-string">ContainerInherit</span>”, “<span class="ps-string">InheritOnly</span>”,“<span class="ps-string">Deny</span>” <br>
+      <span class="ps-variable">$accessRule </span>= <span class="ps-pscommand">New-Object</span> System.Security.AccessControl.FileSystemAccessRule <span class="ps-variable">$permission </span> <br>
+      <span class="ps-variable">$acl</span>.AddAccessRule(<span class="ps-variable">$accessRule</span>)<br>
+      <br>
+
+      <span class="ps-comment">## Set the ACL </span><br>
+      <span class="ps-variable">$acl</span> | <span class="ps-pscommand">Set-Acl</span> "<span class="ps-string">D:\Logs\Transcripts\</span>"<br>
+
+    </div>
+
+
+
+      <!-- FOOTER -->
+      <hr class="featurette-divider">
+      <footer class="container">
+        <p class="float-right"><a href="#">Back to top</a></p>
+        <p>&copy; By Rotem Simhi</p>
+      </footer>
+      
+    </main>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/static/js/jquery-3.2.1.slim.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/static/js/jquery-slim.min.js"><\/script>')</script>
+    <script src="/static/js/popper.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/docs.min.js"></script>
+
+  </body>
+</html>
