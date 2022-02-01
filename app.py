@@ -12,6 +12,7 @@ app = Flask(__name__)
 @app.route('/')
 def root():
     # Description
+    print('Request for index page received')
     return render_template('index.html')
 
 @app.route('/thankyou.html')
@@ -23,8 +24,10 @@ def return_thankyou_page():
 def return_index_page(page_name):
     pages = page_list()
     if page_name.lower() in pages:
+        print('Request for ' + page_name +  ' page received')
         return render_template(page_name)
     else:
+        print('Page not exists: ' + page_name + ' , Redirecting to error.html')
         return render_template('/error.html')
 
 @app.route('/favicon.ico')
