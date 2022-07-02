@@ -12,7 +12,7 @@ app = Flask(__name__)
 @app.route('/')
 def root():
     # Description
-    print('Request for index page received')
+    # print('Request for index page received')
     return render_template('index.html')
 
 @app.route('/thankyou')
@@ -24,16 +24,21 @@ def return_thankyou_page():
 def return_index_page(page_name):
     pages = page_list()
     if page_name.lower() in pages:
-        print('Request for ' + page_name +  ' page received')
+        # print('Request for ' + page_name +  ' page received')
         return render_template(page_name + '.html')
     else:
-        print('Page not exists: ' + page_name + ' , Redirecting to error')
-        return render_template('/error.html')
+        # print('Page not exists: ' + page_name + ' , Redirecting to error')
+        #return render_template('/error.html')
+        page_not_found()
 
 @app.route('/favicon.ico')
 def favicon():
     return send_from_directory(path.join(app.root_path, 'static'),
                                'logo.png', mimetype='image/vnd.microsoft.icon')
+
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('error.html'), 404
 
 def page_list():
     return ['index', 'ps_methodology', 'cheatsheet', 'ps-snippets', 'splunk-snippets', 'carousel', 'page_template']
