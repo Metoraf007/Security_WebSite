@@ -40,5 +40,5 @@ def page_not_found(error):
     return render_template('error.html'), 404
 
 def page_list():
-    return ['index', 'ps_methodology', 'cheatsheet', 'ps-snippets', 'splunk-snippets', 'carousel', 'page_template']
+    return ['index', 'ps_methodology', 'cheatsheet', 'ps-snippets', 'splunk-snippets']
 
