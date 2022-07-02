@@ -36,5 +36,5 @@ def favicon():
                                'logo.png', mimetype='image/vnd.microsoft.icon')
 
 def page_list():
-    return ['index', 'ps_methodology', 'cheatsheet', 'ps-scripts', 'splunk-scripts', 'carousel', 'page_template']
+    return ['index', 'ps_methodology', 'cheatsheet', 'ps-snippets', 'splunk-snippets', 'carousel', 'page_template']
 
