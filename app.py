@@ -24,12 +24,10 @@ def return_thankyou_page():
 def return_index_page(page_name):
     pages = page_list()
     if page_name.lower() in pages:
-        # print('Request for ' + page_name +  ' page received')
+        app.logger.debug('Request for ' + page_name +  ' page received')
         return render_template(page_name + '.html')
     else:
-        # print('Page not exists: ' + page_name + ' , Redirecting to error')
-        #return render_template('/error.html')
-        page_not_found()
+        page_not_found(page_name)
 
 @app.route('/favicon.ico')
 def favicon():
@@ -38,6 +36,7 @@ def favicon():
 
 @app.errorhandler(404)
 def page_not_found(error):
+    app.logger.debug('Page not exists: "' + error + '", Redirecting to error')
     return render_template('error.html'), 404
 
 def page_list():
