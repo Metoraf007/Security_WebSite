@@ -27,7 +27,8 @@ def return_index_page(page_name):
         app.logger.debug('Request for ' + page_name +  ' page received')
         return render_template(page_name + '.html')
     else:
-        page_not_found(page_name)
+        return render_template('error.html'), 404
+        # page_not_found(page_name)
 
 @app.route('/favicon.ico')
 def favicon():
