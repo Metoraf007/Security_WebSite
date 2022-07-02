@@ -15,7 +15,7 @@ def root():
     print('Request for index page received')
     return render_template('index.html')
 
-@app.route('/thankyou.html')
+@app.route('/thankyou')
 def return_thankyou_page():
         email = request.args.get('email')
         return render_template('/thankyou.html', email=email)
@@ -25,9 +25,9 @@ def return_index_page(page_name):
     pages = page_list()
     if page_name.lower() in pages:
         print('Request for ' + page_name +  ' page received')
-        return render_template(page_name)
+        return render_template(page_name + '.html')
     else:
-        print('Page not exists: ' + page_name + ' , Redirecting to error.html')
+        print('Page not exists: ' + page_name + ' , Redirecting to error')
         return render_template('/error.html')
 
 @app.route('/favicon.ico')
@@ -36,5 +36,5 @@ def favicon():
                                'logo.png', mimetype='image/vnd.microsoft.icon')
 
 def page_list():
-    return ['index.html', 'ps_methodology.html', 'cheatsheet.html', 'psscripts.html', 'splunkscripts.html', 'carousel.html', 'page_template.html']
+    return ['index', 'ps_methodology', 'cheatsheet', 'psscripts', 'splunkscripts', 'carousel', 'page_template']
 
